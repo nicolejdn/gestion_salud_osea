@@ -27,7 +27,12 @@ SECRET_KEY = 'django-insecure-*foyg+b75$45$lqe8+4hr34)de$n3@em4xt6@)zaawus7t#jo=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+       'localhost',
+        '127.0.0.1',
+        'gestion-salud-osea.onrender.com'
+]
+
 
 
 # Application definition
@@ -39,12 +44,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'salud_osea',
     'rest_framework',
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,21 +85,14 @@ WSGI_APPLICATION = 'GestionSaludOsea.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_salud_osea',
-        'USER': 'root',
-        'PASSWORD': 'Danteyanto2611',
-        'HOST': '127.0.0.1',
-        'PORT': '3307',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'use_unicode': True,
-        }
-    }
-}
+import dj_database_url
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://postgres:password@localhost:5432/db',
+        conn_max_age=600
+    )
+}
 
 
 # Password validation
@@ -128,6 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = 'static/'
 
 # Default primary key field type
