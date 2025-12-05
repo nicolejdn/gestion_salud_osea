@@ -28,10 +28,14 @@ SECRET_KEY = 'django-insecure-*foyg+b75$45$lqe8+4hr34)de$n3@em4xt6@)zaawus7t#jo=
 DEBUG = True
 
 ALLOWED_HOSTS = [
-       'localhost',
-        '127.0.0.1',
-        'gestion-salud-osea.onrender.com'
+    
+    '127.0.0.1',
+    'localhost',
+    '.onrender.com',
+    'gestion-salud-osea.onrender.com'
 ]
+   
+
 
 
 
