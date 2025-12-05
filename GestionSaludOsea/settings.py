@@ -89,28 +89,29 @@ WSGI_APPLICATION = 'GestionSaludOsea.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+import os
+
 DATABASES = {}
-    
-if os.environ.get('RENDER'):
-    # Producción en Render → usar SQLite para evitar errores
+
+# Render → producción
+if os.environ.get("RENDER"):
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'render_db.sqlite3'),
-        }
+        "default": dj_database_url.parse(
+            os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
+# Local → MySQL o SQLite (según tú)
 else:
-    # Desarrollo local → tu MySQL funciona perfecto
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'db_salud_osea',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '3306',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+
 
 
 
