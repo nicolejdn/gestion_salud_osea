@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Pacientes{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4 text-center">Gestión de Pacientes</h1>
+
+<div class="text-end mb-3">
+    <a href="{% url 'crear_paciente' %}" class="btn btn-success">Agregar Paciente</a>
+</div>
+
+<div class="card shadow">
+    <ul class="list-group list-group-flush">
+        {% for p in pacientes %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <strong>{{ p.nombre }} {{ p.apellido }}</strong>
+
+            <div>
+                <a href="{% url 'detalle_paciente' p.pk %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'editar_paciente' p.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                
+                <form action="{% url 'eliminar_paciente' p.pk %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item text-center text-muted">No hay pacientes registrados.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

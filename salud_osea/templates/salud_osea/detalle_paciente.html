@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Detalle Paciente{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Ficha del Paciente</h2>
+
+<div class="card p-4 shadow">
+
+    <p><strong>Nombre:</strong> {{ paciente.nombre }} {{ paciente.apellido }}</p>
+    <p><strong>RUT:</strong> {{ paciente.rut }}</p>
+    <p><strong>Fecha nacimiento:</strong> {{ paciente.fecha_nacimiento }}</p>
+    <p><strong>Género:</strong> {{ paciente.genero }}</p>
+    <p><strong>Dirección:</strong> {{ paciente.direccion }}</p>
+    <p><strong>Teléfono:</strong> {{ paciente.telefono }}</p>
+    <p><strong>Email:</strong> {{ paciente.email }}</p>
+
+    <hr>
+
+    <a href="{% url 'editar_paciente' paciente.pk %}" class="btn btn-warning">Editar</a>
+    <a href="{% url 'eliminar_paciente' paciente.pk %}" class="btn btn-danger">Eliminar</a>
+    <a href="{% url 'lista_pacientes' %}" class="btn btn-secondary">Volver</a>
+
+</div>
+
+{% endblock %}
+

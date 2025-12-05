@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Especialistas{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">Especialistas</h2>
+
+<a href="{% url 'crear_especialista' %}" class="btn btn-success mb-3">Nuevo Especialista</a>
+
+<div class="card shadow">
+    <ul class="list-group list-group-flush">
+        {% for e in especialistas %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ e.nombre }} {{ e.apellido }} - {{ e.especialidad }}
+
+            <div>
+                <a href="{% url 'detalle_especialista' e.pk %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'editar_especialista' e.pk %}" class="btn btn-warning btn-sm">Editar</a>
+
+                <form action="{% url 'eliminar_especialista' e.pk %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

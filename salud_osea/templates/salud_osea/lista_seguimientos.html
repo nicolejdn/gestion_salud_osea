@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Lista de Seguimientos</h2>
+
+    <a href="{% url 'crear_seguimiento' %}" class="btn btn-primary mb-3">
+        Nuevo Seguimiento
+    </a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Tratamiento</th>
+                <th>Fecha de Control</th>
+                <th>Resultado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in seguimientos %}
+            <tr>
+                <td>{{ s.tratamiento.diagnostico.paciente.nombre }} {{ s.tratamiento.diagnostico.paciente.apellido }}</td>
+                <td>{{ s.tratamiento.tipo_terapia }}</td>
+                <td>{{ s.fecha_control }}</td>
+                <td>{{ s.resultado_mejora|default:"-" }}</td>
+
+                <td>
+                    <a href="{% url 'detalle_seguimiento' s.pk %}" class="btn btn-info btn-sm">Detalle</a>
+                    <a href="{% url 'editar_seguimiento' s.pk %}" class="btn btn-warning btn-sm">Editar</a>
+
+                    <form action="{% url 'eliminar_seguimiento' s.pk %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No hay seguimientos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

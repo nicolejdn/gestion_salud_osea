@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Eliminar Especialista{% endblock %}
+{% block content %}
+
+<h2 class="text-danger">Confirmar Eliminación</h2>
+
+<div class="card p-4 shadow">
+    <p>¿Seguro que deseas eliminar al especialista
+       <strong>{{ especialista.nombre }} {{ especialista.apellido }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'lista_especialistas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

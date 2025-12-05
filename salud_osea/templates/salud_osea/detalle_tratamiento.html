@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detalle del Tratamiento</h2>
+
+    <div class="card p-4 shadow">
+        <p><strong>Paciente:</strong> 
+            {{ tratamiento.diagnostico.paciente.nombre }} {{ tratamiento.diagnostico.paciente.apellido }}
+        </p>
+
+        <p><strong>Diagnóstico:</strong> 
+            {{ tratamiento.diagnostico.tipo_enfermedad }}
+        </p>
+
+        <p><strong>Tipo de Terapia:</strong> {{ tratamiento.tipo_terapia }}</p>
+
+        <p><strong>Duración (semanas):</strong> 
+            {{ tratamiento.duracion_semanas|default:"No especificado" }}
+        </p>
+
+        <p><strong>Dosis de Medicamento:</strong> 
+            {{ tratamiento.dosis_medicamento|default:"No indicado" }}
+        </p>
+
+        <a href="{% url 'editar_tratamiento' tratamiento.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'lista_tratamientos' %}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

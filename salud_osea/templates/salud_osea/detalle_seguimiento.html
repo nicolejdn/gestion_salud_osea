@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detalle del Seguimiento</h2>
+
+    <div class="card p-4 shadow">
+
+        <p><strong>Paciente:</strong> 
+            {{ seguimiento.tratamiento.diagnostico.paciente.nombre }} 
+            {{ seguimiento.tratamiento.diagnostico.paciente.apellido }}
+        </p>
+
+        <p><strong>Tratamiento:</strong> {{ seguimiento.tratamiento.tipo_terapia }}</p>
+
+        <p><strong>Fecha de Control:</strong> {{ seguimiento.fecha_control }}</p>
+
+        <p><strong>Observaciones:</strong> 
+            {{ seguimiento.observaciones|default:"No registradas" }}
+        </p>
+
+        <p><strong>Resultado de Mejora:</strong> 
+            {{ seguimiento.resultado_mejora|default:"-" }}
+        </p>
+
+        <a href="{% url 'editar_seguimiento' seguimiento.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'lista_seguimientos' %}" class="btn btn-secondary">Volver</a>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detalle del Diagnóstico</h2>
+
+    <div class="card p-4 shadow">
+        <p><strong>Paciente:</strong> 
+            {{ diagnostico.paciente.nombre }} {{ diagnostico.paciente.apellido }}
+        </p>
+
+        <p><strong>Tipo de Enfermedad:</strong> {{ diagnostico.tipo_enfermedad }}</p>
+
+        <p><strong>Nivel de Gravedad:</strong> 
+            {{ diagnostico.nivel_gravedad|default:"No especificado" }}
+        </p>
+
+        <p><strong>Fecha del Diagnóstico:</strong> {{ diagnostico.fecha_diagnostico }}</p>
+
+        <a href="{% url 'editar_diagnostico' diagnostico.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'lista_diagnosticos' %}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

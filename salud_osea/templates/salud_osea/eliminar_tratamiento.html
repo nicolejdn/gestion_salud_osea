@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Eliminar Tratamiento</h2>
+
+    <div class="alert alert-danger">
+        <p>¿Deseas eliminar este tratamiento?</p>
+        <p><strong>{{ tratamiento.tipo_terapia }}</strong></p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'lista_tratamientos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

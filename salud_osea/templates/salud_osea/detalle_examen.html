@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detalle del Examen</h2>
+
+    <div class="card p-4 shadow">
+
+        <p><strong>Paciente:</strong> 
+            {{ examen.paciente.nombre }} {{ examen.paciente.apellido }}
+        </p>
+
+        <p><strong>Tipo de Examen:</strong> {{ examen.tipo_examen }}</p>
+
+        <p><strong>Fecha del Examen:</strong> {{ examen.fecha_examen }}</p>
+
+        <p><strong>Valor T-Score:</strong> {{ examen.valor_t_score|default:"No registrado" }}</p>
+
+        <p><strong>Ángulo de Cobb:</strong> {{ examen.angulo_cobb|default:"No registrado" }}</p>
+
+        {% if examen.url_documento %}
+            <p><strong>Documento:</strong> 
+                <a href="{{ examen.url_documento }}" target="_blank">Ver archivo</a>
+            </p>
+        {% endif %}
+
+        <a href="{% url 'editar_examen' examen.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'lista_examenes' %}" class="btn btn-secondary">Volver</a>
+
+    </div>
+</div>
+{% endblock %}
