@@ -1,0 +1,23 @@
+[
+  {
+    "nombre": "Osteoporosis",
+    "descripcion": "Enfermedad que debilita los huesos, aumentando el riesgo de fracturas.",
+    "factores_riesgo": ["Edad avanzada", "Menopausia", "Deficiencia de calcio"],
+    "sintomas": ["Dolor de espalda", "Pérdida de estatura", "Fracturas frecuentes"]
+  },
+  {
+    "nombre": "Artritis",
+    "descripcion": "Inflamación de las articulaciones que causa dolor y rigidez.",
+    "factores_riesgo": ["Genética", "Lesiones previas", "Obesidad"],
+    "sintomas": ["Dolor articular", "Hinchazón", "Rigidez matutina"]
+  },
+  {
+    "nombre": "Artrosis",
+    "descripcion": "Degeneración del cartílago que recubre las articulaciones.",
+    "factores_riesgo": ["Envejecimiento", "Sobrecarga articular"],
+    "sintomas": ["Dolor al moverse", "Crujidos", "Rigidez"]
+  }
+]
+
+
+
